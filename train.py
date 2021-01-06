@@ -7,7 +7,7 @@ from dataloader import dataloader
 import imageio
 import numpy as np
 from evalute import validation_model
-os.environ['CUDA_VISIBLE_DEVICES']='7'
+os.environ['CUDA_VISIBLE_DEVICES']='4'
 
 def main():
     is_training=True
@@ -51,7 +51,7 @@ def main():
 
         if itr % 10 == 0:
             print("Step: %d, Train_loss:%g : " % (itr, train_loss))
-        if itr % 1000==0 :
+        if itr % 10==0 :
             # save model
             train.saver.save(sess, config.weight_dir + "model.ckpt", itr)
             #debug save img

@@ -26,8 +26,8 @@ def get_config(is_training=True):
     else:
         config.testmodel="test1"     #"test1"  "test2"
         config.is_training=False
-        config.newckpt_path=config.weight_dir+'/pb/18_1.ckpt'
-        config.pb_path = config.weight_dir + '/pb/18_1.pb'
+        config.newckpt_path=config.weight_dir+'/pb/18_0.ckpt'
+        config.pb_path = config.weight_dir + '/pb/18_0.pb'
     return config
 
 

@@ -11,16 +11,19 @@ import imageio
 os.environ['CUDA_VISIBLE_DEVICES']='4'
 
 
+
 def main():
-    is_training=False
     #get config
-    config=get_config(is_training=is_training)
+    config=get_config(is_training=False)
 
     # load post process op
     postprocess_module = tf.load_op_library(config.so_path)
 
     # create session and load model
-    sess = tf.Session()
+    ConfigProto = tf.ConfigProto()
+    ConfigProto.gpu_options.per_process_gpu_memory_fraction = 0.03 # 占用GPU40%的显存
+    # ConfigProto.gpu_options.allow_growth = True  #最小的GPU显存使用量，动态申请显存
+    sess = tf.Session(config=ConfigProto)
     sess.run(tf.global_variables_initializer())
 
     #load model

@@ -7,7 +7,9 @@ class Model(BaseBlock):
     def __init__(self,config):
         self.is_training = config.is_training
         #define variable
-        self.image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input")
+        # self.image = tf.placeholder(tf.float32, shape=[None, None, None, 3], name="input")
+        self.image = tf.placeholder(tf.uint8, shape=[None, None, None, 3], name="input")
+        self.image_f=tf.cast(self.image,tf.float32)
         if self.is_training:
             self.annotation = tf.placeholder(tf.float32, shape=[None, None, None,1], name="annotation")
 
@@ -48,7 +50,7 @@ class Model(BaseBlock):
                                 normalizer_fn=slim.batch_norm,
                                 normalizer_params=self.batch_norm_params):
                 # conv1
-                out = slim.conv2d(self.image, 16, [3, 3], scope="conv1")
+                out = slim.conv2d(self.image_f, 16, [3, 3], scope="conv1")
                 #down
                 for i,(conv_num,out_size, kernel_size) in enumerate(self.layers_down):
                     up_node.append(out)

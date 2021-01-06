@@ -22,7 +22,7 @@ def ckpt2pb():
           # info
           in_info = tf.placeholder(tf.int32, shape=(), name="get_info")
           val_info = tf.constant(0, dtype=tf.int32)
-          info = tf.constant("18-1_1.0_2020-12-25;", dtype=tf.string)
+          info = tf.constant("18-0_1.0_2020-12-25;", dtype=tf.string)
           info_error = tf.constant("Get info error: unrecognized input value.", dtype=tf.string)
           ret_info = tf.cond(tf.equal(in_info, val_info), get_info, get_info_error)
           rinfo = tf.identity(ret_info, "info")
